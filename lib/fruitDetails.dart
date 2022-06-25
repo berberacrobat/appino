@@ -2,26 +2,27 @@ import 'package:flutter/material.dart';
 
 class FruiteDetailsWidget extends StatelessWidget {
   final Color color;
-  final String name;
+  final Map fruit;
 
-  const FruiteDetailsWidget(this.color, this.name, {Key? key})
+  const FruiteDetailsWidget(this.color, this.fruit, {Key? key})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(name),
+        title: Text(fruit['name']),
       ),
       body: Center(
         child: Card(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              const ListTile(
-                leading: Icon(Icons.album),
-                title: Text('The Enchanted Nightingale'),
-                subtitle: Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
+              ListTile(
+                leading: const Icon(Icons.album),
+                title: Text("ID hhh: " + fruit['id'].toString()),
+                subtitle:
+                    const Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -38,10 +39,9 @@ class FruiteDetailsWidget extends StatelessWidget {
                   const SizedBox(width: 8),
                 ],
               ),
-              Column(children: const [
+              Column(children: [
                 Image(
-                  image: NetworkImage(
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ1WaR8X7ZIqOEZsTWpOTz-r-WnkMXkV--RA&usqp=CAU'),
+                  image: NetworkImage(fruit['image']),
                 )
               ]),
             ],

@@ -21,8 +21,8 @@ class PlaceholderWidget extends StatelessWidget {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) =>
-                      const FruiteDetailsWidget(Colors.brown, "Lemon")),
+                  builder: (context) => const FruiteDetailsWidget(
+                      Colors.brown, {'name': 'test', 'id': '1234'})),
             ),
             child: const Card(
                 elevation: 0,

@@ -1,6 +1,8 @@
 import 'package:appino/placeholder_widget.dart';
 import 'package:flutter/material.dart';
 
+import 'homeWidget.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.lime,
+        primarySwatch: Colors.amber,
       ),
       home: const MyHomePage(title: 'Fruit Valley'),
     );
@@ -33,11 +35,11 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int _selectedIndex = 0;
 
-  final List _pages = const [
-    PlaceholderWidget(Colors.white),
-    PlaceholderWidget(Colors.deepOrange),
-    PlaceholderWidget(Colors.green),
-    PlaceholderWidget(Colors.blueGrey)
+  final List _pages = [
+    HomeWidget(Colors.white),
+    const PlaceholderWidget(Colors.deepOrange),
+    const PlaceholderWidget(Colors.green),
+    const PlaceholderWidget(Colors.blueGrey)
   ];
 
   void _incrementCounter() {
