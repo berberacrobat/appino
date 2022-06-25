@@ -1,4 +1,5 @@
 import 'package:appino/fruitDetails.dart';
+import 'package:appino/fruit_map.dart';
 import 'package:flutter/material.dart';
 
 class HomeWidget extends StatelessWidget {
@@ -36,11 +37,12 @@ class HomeWidget extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              FruiteDetailsWidget(Colors.brown, fruit)),
+                              //FruiteDetailsWidget(Colors.brown, fruit)
+                              const FruitMarkersPage()),
                     ),
                     child: Card(
                         elevation: 0,
-                        color: Colors.black,
+                        color: Colors.grey,
                         child: Image(
                           image: NetworkImage(fruit['image']),
                         )),

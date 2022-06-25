@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'markers_page.dart';
+
 class FruiteDetailsWidget extends StatelessWidget {
   final Color color;
   final Map fruit;
@@ -28,8 +30,12 @@ class FruiteDetailsWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   TextButton(
-                    child: const Text('BUY TICKETS'),
-                    onPressed: () {/* ... */},
+                    child: const Text('Map view'),
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const MarkersPage()),
+                    ),
                   ),
                   const SizedBox(width: 8),
                   TextButton(
@@ -42,7 +48,8 @@ class FruiteDetailsWidget extends StatelessWidget {
               Column(children: [
                 Image(
                   image: NetworkImage(fruit['image']),
-                )
+                ),
+                //const MarkersPage(),
               ]),
             ],
           ),
