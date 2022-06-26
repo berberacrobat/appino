@@ -1,10 +1,13 @@
+import 'dart:convert';
+
 import 'package:appino/fruitDetails.dart';
 import 'package:appino/fruit_map.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-class HomeWidget extends StatelessWidget {
+class HomeWidget extends StatefulWidget {
   final Color color;
-  final List fruits = [
+  final List fruits0 = [
     {
       'name': 'Banana',
       'id': '0101',
@@ -22,9 +25,36 @@ class HomeWidget extends StatelessWidget {
   HomeWidget(this.color, {Key? key}) : super(key: key);
 
   @override
+  State<HomeWidget> createState() => _HomeWidgetPageState();
+}
+
+class _HomeWidgetPageState extends State<HomeWidget> {
+  late List fruits = [];
+
+  @override
+  void initState() {
+    super.initState();
+    print("initState() called .");
+    _getData();
+  }
+
+  void _getData() async {
+    String url = 'http://127.0.0.1:8001/api/forages/';
+    final response = await http
+        .get(Uri.parse(url), headers: {"Access-Control-Allow-Origin": "*"});
+
+    // print(response.body.toString());
+    setState(() {
+      fruits = jsonDecode(response.body);
+
+      print(fruits.toString());
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
-      color: color,
+      color: widget.color,
       child: GridView.count(
           primary: false,
           padding: const EdgeInsets.all(20),
@@ -38,7 +68,7 @@ class HomeWidget extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) =>
                               //FruiteDetailsWidget(Colors.brown, fruit)
-                              const FruitMarkersPage()),
+                              FruitMarkersPage(fruit)),
                     ),
                     child: Card(
                         elevation: 0,

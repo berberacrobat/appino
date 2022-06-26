@@ -1,6 +1,6 @@
 import 'package:appino/placeholder_widget.dart';
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
 import 'homeWidget.dart';
 
 void main() {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: const MyHomePage(title: 'Forage'),
+      home: const MyHomePage(title: 'Foraging'),
     );
   }
 }
@@ -54,6 +54,14 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _getData() async {
+    String url = 'http://127.0.0.1:8001/api/areas/';
+    final response = await http
+        .get(Uri.parse(url), headers: {"Access-Control-Allow-Origin": "*"});
+
+    print(response.body.toString());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,6 +93,11 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
         selectedItemColor: Color.fromARGB(255, 6, 158, 122),
         onTap: _onItemTapped,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _getData,
+        tooltip: 'Get data',
+        child: const Icon(Icons.add),
       ),
     );
   }

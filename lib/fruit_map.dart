@@ -5,7 +5,9 @@ import 'package:latlng/latlng.dart';
 import 'package:map/map.dart';
 
 class FruitMarkersPage extends StatefulWidget {
-  const FruitMarkersPage({Key? key}) : super(key: key);
+  var fruit = {};
+
+  FruitMarkersPage(this.fruit, {Key? key}) : super(key: key);
 
   @override
   FruitMarkersPageState createState() => FruitMarkersPageState();
@@ -13,6 +15,15 @@ class FruitMarkersPage extends StatefulWidget {
 
 class FruitMarkersPageState extends State<FruitMarkersPage> {
   late LatLng myLocation = LatLng(37.871666, -122.272781);
+  var areas = [];
+
+  @override
+  void initState() {
+    super.initState();
+    areas = widget.fruit['areas'];
+    print("initState() called from MAP .");
+    print(areas);
+  }
 
   final controller = MapController(
     location: LatLng(37.871666, -122.272781),
@@ -90,7 +101,7 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Markers'),
+        title: const Text('Forage'),
       ),
       body: MapLayoutBuilder(
         controller: controller,
@@ -98,12 +109,28 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
           final markerPositions =
               markers.map(transformer.fromLatLngToXYCoords).toList();
 
+          final areasLocations = areas.map((item) {
+            //print(item['address']['latitude']);
+            return LatLng(double.parse(item['address']['latitude']),
+                double.parse(item['address']['longitude']));
+          }).toList();
+
+          final areasPositions =
+              areasLocations.map(transformer.fromLatLngToXYCoords).toList();
+
+          print(markerPositions);
+          print("------------");
+          print(areasPositions);
+
           final markerWidgets = markerPositions.map(
             (pos) => _buildMarkerWidget(pos, Colors.red),
           );
 
-          final homeLocation =
-              transformer.fromLatLngToXYCoords(LatLng(35.68, 51.42));
+          final areasWidgets = areasPositions.map(
+            (pos) => _buildMarkerWidget(pos, Colors.lime),
+          );
+
+          final homeLocation = transformer.fromLatLngToXYCoords(myLocation);
 
           final homeMarkerWidget =
               _buildMarkerWidget(homeLocation, Colors.black, Icons.home);
@@ -146,8 +173,9 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
                     },
                   ),
                   homeMarkerWidget,
-                  ...markerWidgets,
-                  centerMarkerWidget,
+                  ...areasWidgets,
+                  //...markerWidgets,
+                  //centerMarkerWidget,
                 ],
               ),
             ),
