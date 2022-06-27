@@ -39,7 +39,7 @@ class _HomeWidgetPageState extends State<HomeWidget> {
   }
 
   void _getData() async {
-    String url = 'http://127.0.0.1:8001/api/forages/';
+    String url = 'http://127.0.0.1:8000/api/forages/';
     final response = await http
         .get(Uri.parse(url), headers: {"Access-Control-Allow-Origin": "*"});
 

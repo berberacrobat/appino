@@ -1,6 +1,7 @@
 import 'package:appino/placeholder_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:material_color_generator/material_color_generator.dart';
 import 'homeWidget.dart';
 
 void main() {
@@ -9,6 +10,26 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+  static const int priaryColor = 0xFF9ED5A0;
+  static const Color _greenPrimaryValue = Color(priaryColor);
+  static const MaterialColor myGreen = MaterialColor(
+    priaryColor,
+    <int, Color>{
+      50: Color(0xFFE8F5E9),
+      100: Color(0xFFC8E6C9),
+      200: Color(0xFFA5D6A7),
+      300: Color(0xFF81C784),
+      350: Color(
+          0xFFD6D6D6), // only for raised button while pressed in light theme
+      400: Color(0xFF66BB6A),
+      500: _greenPrimaryValue,
+      600: Color(0xFF43A047),
+      700: Color(0xFF388E3C),
+      800: Color(0xFF2E7D32),
+      850: Color(0xFF303030), // only for background color in dark theme
+      900: Color(0xFF1B5E20),
+    },
+  );
 
   // This widget is the root of your application.
   @override
@@ -16,7 +37,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.grey,
+        primarySwatch: generateMaterialColor(color: Color(0xFF30F495)),
       ),
       home: const MyHomePage(title: 'Foraging'),
     );
@@ -36,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
   final List _pages = [
-    HomeWidget(Colors.white),
+    HomeWidget(Color(0xFFBEF5D1)),
     const PlaceholderWidget(Colors.deepOrange),
     const PlaceholderWidget(Colors.green),
     const PlaceholderWidget(Colors.blueGrey)
@@ -55,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _getData() async {
-    String url = 'http://127.0.0.1:8001/api/areas/';
+    String url = 'http://127.0.0.1:8000/api/areas/';
     final response = await http
         .get(Uri.parse(url), headers: {"Access-Control-Allow-Origin": "*"});
 

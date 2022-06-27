@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:latlng/latlng.dart';
 import 'package:map/map.dart';
 
@@ -16,6 +17,10 @@ class FruitMarkersPage extends StatefulWidget {
 class FruitMarkersPageState extends State<FruitMarkersPage> {
   late LatLng myLocation = LatLng(37.871666, -122.272781);
   var areas = [];
+  late Position _currentPosition;
+  late Offset _currentLocation;
+  late Widget _currentLocationMarkerWidget;
+  final List allMarkersWidgets = [];
 
   @override
   void initState() {
@@ -39,6 +44,8 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
   void _gotoDefault() {
     controller.center = myLocation;
     setState(() {});
+    print(
+        "LAT: ${_currentPosition.latitude}, LNG: ${_currentPosition.longitude}");
   }
 
   void _onDoubleTap() {
@@ -131,6 +138,31 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
           );
 
           final homeLocation = transformer.fromLatLngToXYCoords(myLocation);
+          //Future<LocationPermission> permission =
+          // Geolocator.requestPermission();
+          //Geolocator.openLocationSettings();
+
+          final deviceLocation = Geolocator.getCurrentPosition(
+              desiredAccuracy: LocationAccuracy.high);
+
+          deviceLocation.then((Position position) => {
+                setState(() {
+                  _currentPosition = position;
+                  _currentLocation = transformer.fromLatLngToXYCoords(LatLng(
+                      _currentPosition.latitude, _currentPosition.longitude));
+                  _currentLocationMarkerWidget = _buildMarkerWidget(
+                      _currentLocation, Color(0xFF0B4BE1), Icons.my_location);
+                  allMarkersWidgets.clear();
+                  allMarkersWidgets.add(_currentLocationMarkerWidget);
+                  print(' Set state = position updated mm');
+                })
+              });
+/* 
+          final currentLocation = transformer.fromLatLngToXYCoords(
+              LatLng(_currentPosition.latitude, _currentPosition.longitude));
+
+          final currentLocationMarkerWidget = _buildMarkerWidget(
+              currentLocation, Color(0xFF0B4BE1), Icons.my_location); */
 
           final homeMarkerWidget =
               _buildMarkerWidget(homeLocation, Colors.black, Icons.home);
@@ -172,8 +204,9 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
                       );
                     },
                   ),
-                  homeMarkerWidget,
                   ...areasWidgets,
+                  homeMarkerWidget,
+                  ...allMarkersWidgets,
                   //...markerWidgets,
                   //centerMarkerWidget,
                 ],
