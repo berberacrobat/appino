@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: generateMaterialColor(color: Color(0xFF30F495)),
       ),
-      home: const MyHomePage(title: 'Foraging'),
+      home: const MyHomePage(title: 'Foraging ..'),
     );
   }
 }

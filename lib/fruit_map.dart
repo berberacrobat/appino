@@ -172,8 +172,8 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
           );
 
           final homeLocation = transformer.fromLatLngToXYCoords(myLocation);
-          //Future<LocationPermission> permission =
-          // Geolocator.requestPermission();
+          Future<LocationPermission> permission =
+              Geolocator.requestPermission();
           //Geolocator.openLocationSettings();
 
           final deviceLocation = Geolocator.getCurrentPosition(
