@@ -60,7 +60,8 @@ class _MyHomePageState extends State<MyHomePage> {
     HomeWidget(Color(0xFFBEF5D1)),
     const PlaceholderWidget(Colors.deepOrange),
     const PlaceholderWidget(Colors.green),
-    const PlaceholderWidget(Colors.blueGrey)
+    const PlaceholderWidget(Colors.blueGrey),
+    const PlaceholderWidget(Colors.brown)
   ];
 
   void _incrementCounter() {
@@ -86,33 +87,52 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      /*  appBar: AppBar(
         title: Text(widget.title),
-      ),
+      ), */
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        // backgroundColor: Colors.grey,
+        backgroundColor: Color.fromARGB(255, 155, 216, 156),
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(
+              Icons.home,
+              color: Color.fromARGB(255, 56, 92, 55),
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_basket),
-            label: 'Basket',
+            icon: Icon(
+              Icons.shopping_basket,
+              color: Color.fromARGB(255, 56, 92, 55),
+            ),
+            label: 'Favourites',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
+            icon: Icon(
+              Icons.search,
+              color: Color.fromARGB(255, 56, 92, 55),
+            ),
+            label: 'Discover',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(
+              Icons.remove_red_eye,
+              color: Color.fromARGB(255, 56, 92, 55),
+            ),
+            label: 'Eureka',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person,
+              color: Color.fromARGB(255, 56, 92, 55),
+            ),
             label: 'Account',
           )
         ],
-        selectedItemColor: Color.fromARGB(255, 6, 158, 122),
+        selectedItemColor: Color.fromARGB(255, 8, 12, 11),
         onTap: _onItemTapped,
       ),
       floatingActionButton: FloatingActionButton(

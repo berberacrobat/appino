@@ -93,12 +93,46 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
           size: 48,
         ),
         onTap: () {
-          showDialog(
+          showModalBottomSheet<void>(
+            context: context,
+            builder: (BuildContext context) {
+              return Container(
+                height: 600,
+                color: const Color.fromRGBO(158, 186, 190, 1),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const ListTile(
+                        leading: Icon(Icons.share),
+                        title: const Text('Share'),
+                      ),
+                      const ListTile(
+                        leading: Icon(Icons.copy),
+                        title: Text('Copy Link'),
+                      ),
+                      const ListTile(
+                        leading: const Icon(Icons.edit),
+                        title: const Text('Edit'),
+                      ),
+                      const Text('Modal BottomSheet'),
+                      ElevatedButton(
+                        child: const Text('Close BottomSheet'),
+                        onPressed: () => Navigator.pop(context),
+                      )
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
+          /*  showDialog(
             context: context,
             builder: (context) => const AlertDialog(
               content: Text('You have clicked a marker!'),
             ),
-          );
+          ); */
         },
       ),
     );
@@ -146,16 +180,22 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
               desiredAccuracy: LocationAccuracy.high);
 
           deviceLocation.then((Position position) => {
-                setState(() {
-                  _currentPosition = position;
-                  _currentLocation = transformer.fromLatLngToXYCoords(LatLng(
-                      _currentPosition.latitude, _currentPosition.longitude));
-                  _currentLocationMarkerWidget = _buildMarkerWidget(
-                      _currentLocation, Color(0xFF0B4BE1), Icons.my_location);
-                  allMarkersWidgets.clear();
-                  allMarkersWidgets.add(_currentLocationMarkerWidget);
-                  print(' Set state = position updated mm');
-                })
+                if (mounted)
+                  {
+                    setState(() {
+                      _currentPosition = position;
+                      _currentLocation = transformer.fromLatLngToXYCoords(
+                          LatLng(_currentPosition.latitude,
+                              _currentPosition.longitude));
+                      _currentLocationMarkerWidget = _buildMarkerWidget(
+                          _currentLocation,
+                          Color.fromARGB(255, 68, 181, 141),
+                          Icons.my_location);
+                      allMarkersWidgets.clear();
+                      allMarkersWidgets.add(_currentLocationMarkerWidget);
+                      print(' Set state = position updated mm');
+                    })
+                  }
               });
 /* 
           final currentLocation = transformer.fromLatLngToXYCoords(

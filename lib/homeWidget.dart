@@ -39,9 +39,10 @@ class _HomeWidgetPageState extends State<HomeWidget> {
   }
 
   void _getData() async {
-    String url = 'http://127.0.0.1:8000/api/forages/';
-    final response = await http
-        .get(Uri.parse(url), headers: {"Access-Control-Allow-Origin": "*"});
+    //String url = 'http://127.0.0.1:8000/api/forages/';
+    String url = 'https://api.fouraging.com/api/forages';
+    final response = await http.get(Uri.parse(url));
+    //.get(Uri.parse(url), headers: {"Access-Control-Allow-Origin": "*"});
 
     // print(response.body.toString());
     setState(() {
@@ -70,14 +71,46 @@ class _HomeWidgetPageState extends State<HomeWidget> {
                               //FruiteDetailsWidget(Colors.brown, fruit)
                               FruitMarkersPage(fruit)),
                     ),
-                    child: Card(
-                        elevation: 0,
-                        color: Colors.grey,
-                        child: Image(
-                          image: NetworkImage(fruit['image']),
-                        )),
+                    child: Column(
+                      children: [
+                        Card(
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          color: Color.fromARGB(255, 158, 216, 165),
+                          child: Image(
+                            height: 80,
+                            width: 80,
+                            image: NetworkImage(fruit['image']),
+                          ),
+                        ),
+                        Text(
+                          fruit['name'],
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 56, 92, 55)),
+                        )
+                      ],
+                    ),
                   ))
               .toList()),
     );
   }
 }
+
+
+/* Card(
+                      elevation: 3,
+                      color: Color.fromARGB(255, 137, 218, 179),
+                      child: Column(
+                        children: <Widget>[
+                          Expanded(
+                            child: Image(
+                              image: NetworkImage(fruit['image']),
+                            ),
+                          ),
+                          Text(fruit['name'])
+                        ],
+                      ),
+                    ), */
