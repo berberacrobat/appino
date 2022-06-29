@@ -12,15 +12,13 @@ class HomeWidget extends StatefulWidget {
       'name': 'Banana',
       'id': '0101',
       'image':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQALJiATjTXuSriYCuWy9Ai0jO0e-nMaY6a_w&usqp=CAU',
-      'areas': []
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQALJiATjTXuSriYCuWy9Ai0jO0e-nMaY6a_w&usqp=CAU'
     },
     {
       'name': 'Apple',
       'id': '0101737',
       'image':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ1WaR8X7ZIqOEZsTWpOTz-r-WnkMXkV--RA&usqp=CAU',
-      'areas': []
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ1WaR8X7ZIqOEZsTWpOTz-r-WnkMXkV--RA&usqp=CAU'
     }
   ];
 
@@ -64,7 +62,7 @@ class _HomeWidgetPageState extends State<HomeWidget> {
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           crossAxisCount: 3,
-          children: widget.fruits0
+          children: fruits
               .map((fruit) => InkWell(
                     onTap: () => Navigator.push(
                       context,
