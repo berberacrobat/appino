@@ -57,48 +57,48 @@ class _HomeWidgetPageState extends State<HomeWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: widget.color,
-        child: SafeArea(
-          child: GridView.count(
-              primary: false,
-              padding: const EdgeInsets.all(2),
-              crossAxisSpacing: 5,
-              mainAxisSpacing: 4,
-              crossAxisCount: 3,
-              children: fruits
-                  .map((fruit) => InkWell(
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  //FruiteDetailsWidget(Colors.brown, fruit)
-                                  FruitMarkersPage(fruit)),
+      color: widget.color,
+      child: GridView.count(
+          primary: false,
+          padding: const EdgeInsets.all(20),
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          crossAxisCount: 3,
+          children: fruits
+              .map((fruit) => InkWell(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              //FruiteDetailsWidget(Colors.brown, fruit)
+                              FruitMarkersPage(fruit)),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Card(
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          color: Color.fromARGB(255, 158, 216, 165),
+                          child: Image(
+                            height: 80,
+                            width: 80,
+                            image: NetworkImage(fruit['image']),
+                          ),
                         ),
-                        child: Column(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(5),
-                              decoration: const BoxDecoration(
-                                  color: Color.fromARGB(255, 155, 216, 156),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15))),
-                              height: 80,
-                              width: 80,
-                              child: Image(
-                                image: NetworkImage(fruit['image']),
-                              ),
-                            ),
-                            Text(
-                              fruit['name'],
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 56, 92, 55)),
-                            )
-                          ],
-                        ),
-                      ))
-                  .toList()),
-        ));
+                        Text(
+                          fruit['name'],
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 56, 92, 55)),
+                        )
+                      ],
+                    ),
+                  ))
+              .toList()),
+    );
   }
 }
 
