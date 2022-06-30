@@ -87,6 +87,11 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
       width: 48,
       height: 48,
       child: GestureDetector(
+        //https://api.fouraging.com/public/storage/icons/Apple.png
+        /* Image(
+          image: NetworkImage(
+              'https://api.fouraging.com/public/storage/icons/Apple.png'),
+        )  */
         child: Icon(
           icon,
           color: color,
@@ -98,7 +103,7 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
             builder: (BuildContext context) {
               return Container(
                 height: 600,
-                color: const Color.fromRGBO(158, 186, 190, 1),
+                color: Color.fromARGB(255, 155, 216, 156),
                 child: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -168,7 +173,7 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
           );
 
           final areasWidgets = areasPositions.map(
-            (pos) => _buildMarkerWidget(pos, Colors.lime),
+            (pos) => _buildMarkerWidget(pos, Color.fromARGB(255, 56, 92, 55)),
           );
 
           final homeLocation = transformer.fromLatLngToXYCoords(myLocation);

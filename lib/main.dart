@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:appino/placeholder_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -6,6 +8,39 @@ import 'homeWidget.dart';
 
 void main() {
   runApp(const MyApp());
+}
+
+class SpalshScreen extends StatefulWidget {
+  @override
+  _SpalshScreenState createState() => _SpalshScreenState();
+}
+
+class _SpalshScreenState extends State<SpalshScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(
+        const Duration(seconds: 3),
+        () => Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const MyHomePage(title: 'Foraging ..'))));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        color: const Color.fromARGB(255, 157, 241, 162),
+        child: const FittedBox(
+          fit: BoxFit.cover,
+          child: Image(
+            image: NetworkImage(
+                'https://images.squarespace-cdn.com/content/v1/56e847407c65e4b2a1a3d957/1631579887918-4H9PYV70FNA4MH7T6JOX/ed29e26750ee8555e989eb93c0fcb15a.jpeg?format=500w'),
+          ),
+        ));
+    //https://ak.picdn.net/offset/photos/5f2088bca75ca0db3709b12d/medium/offset_976371.jpg
+    //FlutterLogo(size: MediaQuery.of(context).size.height));
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -36,11 +71,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'ForeAging APP',
       theme: ThemeData(
-        primarySwatch: generateMaterialColor(color: Color(0xFF30F495)),
+        primarySwatch: generateMaterialColor(color: const Color(0xFFBEF5D1)),
       ),
-      home: const MyHomePage(title: 'Foraging ..'),
+      home: SpalshScreen(),
     );
   }
 }
@@ -58,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
   final List _pages = [
-    HomeWidget(Color(0xFFBEF5D1)),
+    HomeWidget(const Color(0xFFBEF5D1)),
     const PlaceholderWidget(Colors.deepOrange),
     const PlaceholderWidget(Colors.green),
     const PlaceholderWidget(Colors.blueGrey),
@@ -93,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ), */
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color.fromARGB(255, 155, 216, 156),
+        backgroundColor: const Color.fromARGB(255, 155, 216, 156),
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
         items: const <BottomNavigationBarItem>[
@@ -133,7 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'Account',
           )
         ],
-        selectedItemColor: Color.fromARGB(255, 8, 12, 11),
+        selectedItemColor: const Color.fromARGB(255, 5, 6, 5),
         onTap: _onItemTapped,
       ),
       floatingActionButton: FloatingActionButton(

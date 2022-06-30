@@ -46,9 +46,10 @@ class FruiteDetailsWidget extends StatelessWidget {
                 ],
               ),
               Column(children: [
-                Image(
-                  image: NetworkImage(fruit['image']),
-                ),
+                if (fruit['image'] != null)
+                  Image(
+                    image: NetworkImage(fruit['image']),
+                  ),
                 //const MarkersPage(),
               ]),
             ],
