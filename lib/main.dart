@@ -73,7 +73,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'ForeAging APP',
       theme: ThemeData(
-        primarySwatch: generateMaterialColor(color: const Color(0xFFBEF5D1)),
+        primarySwatch: generateMaterialColor(
+            color: const Color.fromRGBO(190, 207, 158, 1)),
       ),
       home: SpalshScreen(),
     );
@@ -93,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
   final List _pages = [
-    HomeWidget(const Color(0xFFBEF5D1)),
+    HomeWidget(const Color.fromRGBO(210, 219, 194, 1)),
     const PlaceholderWidget(Color.fromARGB(255, 193, 238, 81)),
     const PlaceholderWidget(Colors.green),
     const PlaceholderWidget(Colors.blueGrey),
@@ -128,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ), */
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color.fromARGB(255, 155, 216, 156),
+        backgroundColor: const Color.fromRGBO(190, 207, 158, 1),
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
         items: const <BottomNavigationBarItem>[

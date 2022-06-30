@@ -81,7 +81,7 @@ class _HomeWidgetPageState extends State<HomeWidget> {
                             Container(
                               padding: const EdgeInsets.all(5),
                               decoration: const BoxDecoration(
-                                  color: Color.fromARGB(255, 155, 216, 156),
+                                  color: Color.fromRGBO(190, 207, 158, 1),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(15))),
                               height: 80,
