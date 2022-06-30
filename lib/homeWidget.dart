@@ -61,9 +61,9 @@ class _HomeWidgetPageState extends State<HomeWidget> {
         child: SafeArea(
           child: GridView.count(
               primary: false,
-              padding: const EdgeInsets.all(2),
-              crossAxisSpacing: 5,
-              mainAxisSpacing: 4,
+              padding: const EdgeInsets.all(0),
+              crossAxisSpacing: 0,
+              mainAxisSpacing: 0,
               crossAxisCount: 3,
               children: fruits
                   .map((fruit) => InkWell(
@@ -75,6 +75,8 @@ class _HomeWidgetPageState extends State<HomeWidget> {
                                   FruitMarkersPage(fruit)),
                         ),
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             Container(
                               padding: const EdgeInsets.all(5),

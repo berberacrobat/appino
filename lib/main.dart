@@ -94,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List _pages = [
     HomeWidget(const Color(0xFFBEF5D1)),
-    const PlaceholderWidget(Colors.deepOrange),
+    const PlaceholderWidget(Color.fromARGB(255, 193, 238, 81)),
     const PlaceholderWidget(Colors.green),
     const PlaceholderWidget(Colors.blueGrey),
     const PlaceholderWidget(Colors.brown)
