@@ -4,6 +4,7 @@ import 'package:appino/placeholder_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:material_color_generator/material_color_generator.dart';
+import 'eureka.dart';
 import 'homeWidget.dart';
 
 void main() {
@@ -97,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
     HomeWidget(const Color.fromRGBO(210, 219, 194, 1)),
     const PlaceholderWidget(Color.fromARGB(255, 193, 238, 81)),
     const PlaceholderWidget(Colors.green),
-    const PlaceholderWidget(Colors.blueGrey),
+    const EurekaMarkersPage(),
     const PlaceholderWidget(Colors.brown)
   ];
 
@@ -172,11 +173,11 @@ class _MyHomePageState extends State<MyHomePage> {
         selectedItemColor: const Color.fromARGB(255, 5, 6, 5),
         onTap: _onItemTapped,
       ),
-      floatingActionButton: FloatingActionButton(
+      /* floatingActionButton: FloatingActionButton(
         onPressed: _getData,
         tooltip: 'Get data',
         child: const Icon(Icons.add),
-      ),
+      ), */
     );
   }
 }

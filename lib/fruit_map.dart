@@ -198,7 +198,7 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
                           Icons.my_location);
                       allMarkersWidgets.clear();
                       allMarkersWidgets.add(_currentLocationMarkerWidget);
-                      print(' Set state = position updated mm');
+                      //print(' Set state = position updated mm');
                     })
                   }
               });

@@ -67,6 +67,10 @@ class _HomeWidgetPageState extends State<HomeWidget> {
               crossAxisCount: 3,
               children: fruits
                   .map((fruit) => InkWell(
+                        highlightColor: Colors.red,
+                        focusColor: Colors.red,
+                        hoverColor: Colors.red,
+                        splashColor: Colors.yellow,
                         onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -93,8 +97,10 @@ class _HomeWidgetPageState extends State<HomeWidget> {
                             Text(
                               fruit['name'],
                               style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 56, 92, 55)),
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 56, 92, 55),
+                                // backgroundColor: Colors.red
+                              ),
                             )
                           ],
                         ),
