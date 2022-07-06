@@ -79,7 +79,7 @@ class EurekaMarkersPageState extends State<EurekaMarkersPage> {
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, String>{
-        'newForageStation': newForageStation.toJson().toString(),
+        'newForageStation': json.encode(newForageStation.toJson()),
       }),
     );
 
