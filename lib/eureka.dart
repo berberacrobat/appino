@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:appino/new_location_confirmation.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -47,14 +48,24 @@ class EurekaMarkersPageState extends State<EurekaMarkersPage> {
     LatLng(37.825496698, -122.284498862),
   ];
 
+  List<DropdownMenuItem<String>> get dropdownItems {
+    List<DropdownMenuItem<String>> menuItems = [
+      const DropdownMenuItem(value: "USA", child: Text("USA")),
+      const DropdownMenuItem(value: "Canada", child: Text("Canada")),
+      const DropdownMenuItem(value: "Brazil", child: Text("Brazil")),
+      const DropdownMenuItem(value: "England", child: Text("England")),
+    ];
+    return menuItems;
+  }
+
   void _dragMarker(DragUpdateDetails d) {
     print("Drag: " + d.toString());
     _newPlaceLocationMarkerWidget = _buildDraggableMarkerWidget(null,
         d.globalPosition, Color.fromARGB(255, 218, 42, 156), Icons.pin_drop);
 
     newForageStation = ForeageStation(
-        name: "Test Station",
-        position: mapTransformer.fromXYCoordsToLatLng(d.globalPosition));
+      position: mapTransformer.fromXYCoordsToLatLng(d.globalPosition),
+    );
 
     print("Lat long: " +
         mapTransformer.fromXYCoordsToLatLng(d.globalPosition).toString());
@@ -71,27 +82,18 @@ class EurekaMarkersPageState extends State<EurekaMarkersPage> {
         "LAT: ${_currentPosition.latitude}, LNG: ${_currentPosition.longitude}");
   }
 
-  void _addNewLocation() async {
-    String url = 'http://127.0.0.1:8000/api/forages/1/areas';
-    final response = await http.post(
-      Uri.parse(url),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'newForageStation': json.encode(newForageStation.toJson()),
-      }),
-    );
+  void _addNewLocation() {
+    String url = 'https://api.fouraging.com/api/forages/1/areas';
+    //String url = 'http://127.0.0.1:8000/api/forages/1/areas';
 
     print("New Place: " + _newPlaceLocationMarkerWidget.toString());
     print("ew Forage station: " + newForageStation.toString());
     showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        content: Text('New Forage place at: (${newForageStation.position}).'),
-      ),
-    );
-    print("POST REsponse: " + response.body);
+        context: context,
+        builder: (context) =>
+            NewLocationConfirmation(newForageStation: newForageStation));
+
+    //print("POST REsponse: " + response.body);
   }
 
   void _onDoubleTap(MapTransformer mapTransformer, Offset position) {
@@ -263,7 +265,7 @@ class EurekaMarkersPageState extends State<EurekaMarkersPage> {
         )  */
         child: const Image(
           image: NetworkImage(
-              'https://api.fouraging.com/public/storage/icons/Apple.png'),
+              'https://api.fouraging.com/public/storage/icons/pinDrop.png'),
         )
         /* Icon(
           icon,
@@ -335,8 +337,7 @@ class EurekaMarkersPageState extends State<EurekaMarkersPage> {
                     Color.fromRGBO(27, 227, 12, 1),
                     Icons.pin_drop);
 
-                newForageStation =
-                    ForeageStation(name: "Test Station", position: location);
+                newForageStation = ForeageStation(position: location);
 
                 allNewPlaceMarkersWidgets.clear();
                 allNewPlaceMarkersWidgets.add(_newPlaceLocationMarkerWidget);

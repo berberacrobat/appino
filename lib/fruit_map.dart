@@ -92,10 +92,14 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
           image: NetworkImage(
               'https://api.fouraging.com/public/storage/icons/Apple.png'),
         )  */
-        child: Icon(
+        /* child: Icon(
           icon,
           color: color,
           size: 48,
+        ), */
+        child: const Image(
+          image: NetworkImage(
+              'https://api.fouraging.com/public/storage/icons/pin.png'),
         ),
         onTap: () {
           showModalBottomSheet<void>(
