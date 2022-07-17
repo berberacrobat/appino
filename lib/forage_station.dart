@@ -2,8 +2,11 @@ import 'package:latlng/latlng.dart';
 
 class ForeageStation {
   String name = "";
-  int forageId = 0;
-  LatLng position;
+  String description = "";
+  String forage_image = "";
+  String forage_name = "";
+  int forage = 0;
+  LatLng? position;
 
   ForeageStation({
     required this.position,
@@ -11,17 +14,23 @@ class ForeageStation {
 
   ForeageStation.fromJson(Map<String, dynamic> json)
       : name = json['name'],
-        forageId = json['forageId'],
+        description = json['description'],
+        forage_image = json['forage_image'],
+        forage_name = json['forage_name'],
+        forage = json['forage'],
         position = json['position'];
 
   Map<String, dynamic> toJson() => {
         'name': name,
-        'forageId': forageId,
-        'position': position.toJson(),
+        'description': description,
+        'forage_image': forage_image,
+        'forage_name': forage_name,
+        'forageId': forage,
+        'position': position?.toJson(),
       };
 
   @override
   toString() {
-    return "$name - $forageId - $position";
+    return " $forage_name - $name - $description - $forage - $position";
   }
 }

@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:appino/forage_display.dart';
+import 'package:appino/forage_station.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +11,7 @@ import 'package:map/map.dart';
 
 class FruitMarkersPage extends StatefulWidget {
   var fruit = {};
+  Color darkGreen = Color.fromARGB(255, 57, 99, 59);
 
   FruitMarkersPage(this.fruit, {Key? key}) : super(key: key);
 
@@ -103,37 +108,52 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
         ),
         onTap: () {
           showModalBottomSheet<void>(
+            backgroundColor: Colors.red,
             context: context,
             builder: (BuildContext context) {
-              return Container(
-                height: 600,
-                color: Color.fromARGB(255, 155, 216, 156),
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      const ListTile(
-                        leading: Icon(Icons.share),
-                        title: const Text('Share'),
-                      ),
-                      const ListTile(
-                        leading: Icon(Icons.copy),
-                        title: Text('Copy Link'),
-                      ),
-                      const ListTile(
-                        leading: const Icon(Icons.edit),
-                        title: const Text('Edit'),
-                      ),
-                      const Text('Modal BottomSheet'),
-                      ElevatedButton(
-                        child: const Text('Close BottomSheet'),
-                        onPressed: () => Navigator.pop(context),
-                      )
-                    ],
-                  ),
-                ),
-              );
+              return const Text('test');
+            },
+          );
+          /*  showDialog(
+            context: context,
+            builder: (context) => const AlertDialog(
+              content: Text('You have clicked a marker!'),
+            ),
+          ); */
+        },
+      ),
+    );
+  }
+
+  Widget _buildForeageStationWidget(Offset pos, Color color,
+      String forageStationId, ForeageStation foreageStation,
+      [IconData icon = Icons.location_on]) {
+    return Positioned(
+      left: pos.dx - 24,
+      top: pos.dy - 24,
+      width: 48,
+      height: 48,
+      child: GestureDetector(
+        //https://api.fouraging.com/public/storage/icons/Apple.png
+        /* Image(
+          image: NetworkImage(
+              'https://api.fouraging.com/public/storage/icons/Apple.png'),
+        )  */
+        /* child: Icon(
+          icon,
+          color: color,
+          size: 48,
+        ), */
+        child: const Image(
+          image: NetworkImage(
+              'https://api.fouraging.com/public/storage/icons/pin.png'),
+        ),
+        onTap: () {
+          showModalBottomSheet<void>(
+            backgroundColor: Colors.red,
+            context: context,
+            builder: (BuildContext context) {
+              return ForageDisplayWidget(forageStationId, foreageStation);
             },
           );
           /*  showDialog(
@@ -156,29 +176,44 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
       body: MapLayoutBuilder(
         controller: controller,
         builder: (context, transformer) {
-          final markerPositions =
-              markers.map(transformer.fromLatLngToXYCoords).toList();
+          /* final markerPositions =
+              markers.map(transformer.fromLatLngToXYCoords).toList(); */
 
-          final areasLocations = areas.map((item) {
+          /* final areasLocations = areas.map((item) {
             //print(item['address']['latitude']);
             return LatLng(double.parse(item['address']['latitude']),
                 double.parse(item['address']['longitude']));
-          }).toList();
+          }).toList(); */
 
-          final areasPositions =
-              areasLocations.map(transformer.fromLatLngToXYCoords).toList();
+          // print("------------");
+          //print("areasLocations: $areasLocations");
 
-          print(markerPositions);
-          print("------------");
-          print(areasPositions);
+          //final areasPositions =
+          //areasLocations.map(transformer.fromLatLngToXYCoords).toList();
 
-          final markerWidgets = markerPositions.map(
-            (pos) => _buildMarkerWidget(pos, Colors.red),
+          print(jsonEncode(areas));
+
+          final newAREAsWidgets = areas.map((area) =>
+              _buildForeageStationWidget(
+                  transformer.fromLatLngToXYCoords(LatLng(
+                      double.parse(area['address']['latitude']),
+                      double.parse(area['address']['longitude']))),
+                  Colors.red,
+                  area['id'].toString(),
+                  ForeageStation.fromJson(area)));
+
+          //print(markerPositions);
+          // print("------------");
+          //print("areasPositions: $areasPositions");
+
+          /* final markerWidgets = markerPositions.map(
+            (pos) => _buildMarkerWidget(pos, Colors.red, "1"),
           );
 
           final areasWidgets = areasPositions.map(
-            (pos) => _buildMarkerWidget(pos, Color.fromARGB(255, 56, 92, 55)),
-          );
+            (pos) =>
+                _buildMarkerWidget(pos, Color.fromARGB(255, 56, 92, 55), ""),
+          ); */
 
           final homeLocation = transformer.fromLatLngToXYCoords(myLocation);
           Future<LocationPermission> permission =
@@ -253,7 +288,7 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
                       );
                     },
                   ),
-                  ...areasWidgets,
+                  ...newAREAsWidgets,
                   homeMarkerWidget,
                   ...allMarkersWidgets,
                   //...markerWidgets,
