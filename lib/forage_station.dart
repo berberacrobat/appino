@@ -1,4 +1,4 @@
-import 'package:latlng/latlng.dart';
+import 'package:appino/lat_lng.dart';
 
 class ForeageStation {
   String name = "";

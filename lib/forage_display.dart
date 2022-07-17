@@ -8,6 +8,10 @@ class ForageDisplayWidget extends StatelessWidget {
   //final Map fruit;
   final foreageStationId;
   final ForeageStation foreageStation;
+  List images = [
+    "https://api.fouraging.com/public/storage/icons/pin.png",
+    "https://api.fouraging.com/public/storage/icons/pin.png"
+  ];
   Color darkGreen = Color.fromARGB(255, 57, 99, 59);
 
   ForageDisplayWidget(this.foreageStationId, this.foreageStation, {Key? key})
@@ -17,7 +21,7 @@ class ForageDisplayWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 600,
-      color: Color.fromARGB(255, 155, 216, 156),
+      color: const Color.fromRGBO(190, 207, 158, 1),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -28,8 +32,10 @@ class ForageDisplayWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
+                  width: 100,
+                  height: 100,
                   decoration: BoxDecoration(
-                      color: const Color.fromRGBO(210, 219, 194, 1),
+                      color: const Color.fromARGB(255, 252, 252, 252),
                       borderRadius: BorderRadius.circular(50.0),
                       border: Border.all(color: darkGreen)),
                   child: Image(
@@ -55,11 +61,18 @@ class ForageDisplayWidget extends StatelessWidget {
               ],
             ),
           ),
-          const Text('Modal BottomSheet'),
-          ElevatedButton(
+          /* ElevatedButton(
             child: const Text('Close BottomSheet'),
             onPressed: () => Navigator.pop(context),
-          )
+          ) ,*/
+          Expanded(
+              child: ListView.builder(
+                  itemCount: images.length,
+                  itemBuilder: (BuildContext ctxt, int Index) {
+                    return Image(
+                      image: NetworkImage(images[Index]),
+                    );
+                  }))
         ],
       ),
     );

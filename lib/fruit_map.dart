@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:appino/forage_display.dart';
 import 'package:appino/forage_station.dart';
+import 'package:appino/lat_lng.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:latlng/latlng.dart';
 import 'package:map/map.dart';
 
 class FruitMarkersPage extends StatefulWidget {
