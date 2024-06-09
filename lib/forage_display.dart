@@ -20,7 +20,7 @@ class ForageDisplayWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 600,
+      height: 800,
       color: const Color.fromRGBO(190, 207, 158, 1),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
