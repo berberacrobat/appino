@@ -266,7 +266,7 @@ class _NewLocationConfirmationState extends State<NewLocationConfirmation> {
                     fillColor: Color.fromARGB(255, 173, 141, 175)),
               ),
               // This component to view uploaded photos
-              //SizedBox(height: 100, child: _previewImages()),
+              SizedBox(height: 100, child: _previewImages()),
               SizedBox(
                 height: 100,
                 width: double.maxFinite,
@@ -318,14 +318,14 @@ class _NewLocationConfirmationState extends State<NewLocationConfirmation> {
 
                         request.files.addAll(newList);
 
-                        print("Request files${request.files}");
+                        // print("Request files${request.files}");
                         request.send().then((response) async {
-                          print('RESPONSE: $response');
+                          // print('RESPONSE: $response');
                           //print('Resposne Message: ${response.toString()}');
                           var responseBody =
                               await response.stream.bytesToString();
 
-                          print('Resposne body: $responseBody');
+                          // print('Resposne body: $responseBody');
 
                           if (response.statusCode == 200) print("Uploaded!");
                         });

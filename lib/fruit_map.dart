@@ -145,7 +145,7 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
         ), */
         child: const Image(
           image: NetworkImage(
-              'https://cdn-icons-png.flaticon.com/512/9356/9356230.png'),
+              'https://static.vecteezy.com/system/resources/thumbnails/038/280/757/small_2x/3d-blue-map-pointer-location-map-icon-blue-texture-blue-location-pin-or-navigation-web-location-point-pointer-grey-pointer-icon-location-symbol-gps-travel-navigation-place-position-png.png'),
         ),
         onTap: () {
           showModalBottomSheet<void>(
