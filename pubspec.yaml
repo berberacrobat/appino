@@ -38,7 +38,18 @@ dependencies:
   cached_network_image: ^3.2.1
   material_color_generator: ^1.1.0
   geolocator: ^9.0.0
+  camera: ^0.10.0
+  file_picker: ^3.0.4
+  image_picker: ^0.8.5+3
 
+  http: any
+  latlng: any
+  camera_web: any
+  geolocator_web: any
+  image_picker_for_web: any
+  flutter_web_plugins:
+    sdk: flutter
+  async: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,11 +1,11 @@
 /// Coordinates in Degrees.
-class LatLng {
+class LatLng2 {
   double latitude;
   double longitude;
 
-  LatLng(this.latitude, this.longitude);
+  LatLng2(this.latitude, this.longitude);
 
-  LatLng.fromJson(Map<String, dynamic> json)
+  LatLng2.fromJson(Map<String, dynamic> json)
       : latitude = json['latitude'],
         longitude = json['longitude'];
 

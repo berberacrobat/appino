@@ -31,12 +31,12 @@ class _SpalshScreenState extends State<SpalshScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: const Color.fromARGB(255, 157, 241, 162),
+        color: Color.fromARGB(255, 173, 82, 167),
         child: const FittedBox(
           fit: BoxFit.cover,
           child: Image(
             image: NetworkImage(
-                'https://images.squarespace-cdn.com/content/v1/56e847407c65e4b2a1a3d957/1631579887918-4H9PYV70FNA4MH7T6JOX/ed29e26750ee8555e989eb93c0fcb15a.jpeg?format=500w'),
+                'https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/1-watercolor-rhythmic-gymnastics-with-hoop-watercolor-print-sports-art-teen-room-dance-nursery-art-spo-leith-huber.jpg'),
           ),
         ));
     //https://ak.picdn.net/offset/photos/5f2088bca75ca0db3709b12d/medium/offset_976371.jpg
@@ -46,9 +46,9 @@ class _SpalshScreenState extends State<SpalshScreen> {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-  static const int priaryColor = 0xFF9ED5A0;
-  static const Color _greenPrimaryValue = Color(priaryColor);
-  static const MaterialColor myGreen = MaterialColor(
+  //static const int priaryColor = 0xFF9ED5A0;
+  //static const Color _greenPrimaryValue = Color.fromARGB(255, 204, 24, 24);
+  /* static const MaterialColor myGreen = MaterialColor(
     priaryColor,
     <int, Color>{
       50: Color(0xFFE8F5E9),
@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
       850: Color(0xFF303030), // only for background color in dark theme
       900: Color(0xFF1B5E20),
     },
-  );
+  ); */
 
   // This widget is the root of your application.
   @override
@@ -74,8 +74,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'ForeAging APP',
       theme: ThemeData(
-        primarySwatch: generateMaterialColor(
-            color: const Color.fromRGBO(190, 207, 158, 1)),
+        primarySwatch:
+            generateMaterialColor(color: Color.fromARGB(255, 180, 131, 180)),
       ),
       home: SpalshScreen(),
     );
@@ -95,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
   final List _pages = [
-    HomeWidget(const Color.fromRGBO(210, 219, 194, 1)),
+    HomeWidget(Color.fromARGB(255, 227, 189, 231)),
     const PlaceholderWidget(Color.fromARGB(255, 193, 238, 81)),
     const PlaceholderWidget(Colors.green),
     const EurekaMarkersPage(),
@@ -115,7 +115,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _getData() async {
-    String url = 'http://127.0.0.1:8000/api/areas/';
+    //String url = 'http://127.0.0.1:8000/api/areas/';
+    String url = 'https://events.managerplay.com/api/areas/';
     final response = await http
         .get(Uri.parse(url), headers: {"Access-Control-Allow-Origin": "*"});
 
@@ -125,52 +126,52 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*  appBar: AppBar(
+      /*   appBar: AppBar(
         title: Text(widget.title),
       ), */
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color.fromRGBO(190, 207, 158, 1),
+        backgroundColor: Color.fromARGB(255, 180, 131, 180),
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
-              color: Color.fromARGB(255, 56, 92, 55),
+              color: Color.fromARGB(255, 92, 55, 90),
             ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.shopping_basket,
-              color: Color.fromARGB(255, 56, 92, 55),
+              color: Color.fromARGB(255, 92, 55, 90),
             ),
             label: 'Favourites',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.search,
-              color: Color.fromARGB(255, 56, 92, 55),
+              color: Color.fromARGB(255, 92, 55, 90),
             ),
             label: 'Discover',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.remove_red_eye,
-              color: Color.fromARGB(255, 56, 92, 55),
+              color: Color.fromARGB(255, 92, 55, 90),
             ),
             label: 'Eureka',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
-              color: Color.fromARGB(255, 56, 92, 55),
+              color: Color.fromARGB(255, 92, 55, 90),
             ),
             label: 'Account',
           )
         ],
-        selectedItemColor: const Color.fromARGB(255, 5, 6, 5),
+        selectedItemColor: Color.fromARGB(255, 69, 17, 60),
         onTap: _onItemTapped,
       ),
       /* floatingActionButton: FloatingActionButton(

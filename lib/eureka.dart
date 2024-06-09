@@ -1,15 +1,12 @@
-import 'dart:convert';
-
 import 'package:appino/new_location_confirmation.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:appino/lat_lng.dart';
 import 'package:map/map.dart';
 import 'package:http/http.dart' as http;
-
 import 'forage_station.dart';
+import 'package:latlng/latlng.dart';
 
 class EurekaMarkersPage extends StatefulWidget {
   const EurekaMarkersPage({Key? key}) : super(key: key);
@@ -38,14 +35,14 @@ class EurekaMarkersPageState extends State<EurekaMarkersPage> {
   }
 
   final controller = MapController(
-    location: LatLng(37.871666, -122.272781),
+    location: const LatLng(37.871666, -122.272781),
   );
 
   final markers = [
-    LatLng(37.87688, -122.27033),
-    LatLng(37.871960, -122.259094),
-    LatLng(37.8570313, -122.2671869),
-    LatLng(37.825496698, -122.284498862),
+    const LatLng(37.87688, -122.27033),
+    const LatLng(37.871960, -122.259094),
+    const LatLng(37.8570313, -122.2671869),
+    const LatLng(37.825496698, -122.284498862),
   ];
 
   List<DropdownMenuItem<String>> get dropdownItems {
@@ -59,16 +56,16 @@ class EurekaMarkersPageState extends State<EurekaMarkersPage> {
   }
 
   void _dragMarker(DragUpdateDetails d) {
-    print("Drag: " + d.toString());
+    print("Draag: " + d.toString());
     _newPlaceLocationMarkerWidget = _buildDraggableMarkerWidget(null,
         d.globalPosition, Color.fromARGB(255, 218, 42, 156), Icons.pin_drop);
 
     newForageStation = ForeageStation(
-      position: mapTransformer.fromXYCoordsToLatLng(d.globalPosition),
+      // position: mapTransformer.fromXYCoordsToLatLng(d.globalPosition),
+      position: mapTransformer.toLatLng(d.globalPosition),
     );
 
-    print("Lat long: " +
-        mapTransformer.fromXYCoordsToLatLng(d.globalPosition).toString());
+    //print("Lat long: " +mapTransformer.fromXYCoordsToLatLng(d.globalPosition).toString());
 
     allNewPlaceMarkersWidgets.clear();
     allNewPlaceMarkersWidgets.add(_newPlaceLocationMarkerWidget);
@@ -83,8 +80,8 @@ class EurekaMarkersPageState extends State<EurekaMarkersPage> {
   }
 
   void _addNewLocation() {
-    String url = 'https://api.fouraging.com/api/forages/1/areas';
-    //String url = 'http://127.0.0.1:8000/api/forages/1/areas';
+    //String url = 'https://api.fouraging.com/api/forages/1/areas';
+    String url = 'http://127.0.0.1:8000/api/forages/1/areas';
 
     print("New Place: " + _newPlaceLocationMarkerWidget.toString());
     print("ew Forage station: " + newForageStation.toString());
@@ -123,7 +120,7 @@ class EurekaMarkersPageState extends State<EurekaMarkersPage> {
       final now = details.focalPoint;
       final diff = now - _dragStart!;
       _dragStart = now;
-      controller.drag(diff.dx, diff.dy);
+      // controller.drag(diff.dx, diff.dy);
       setState(() {});
     }
   }
@@ -265,7 +262,7 @@ class EurekaMarkersPageState extends State<EurekaMarkersPage> {
         )  */
         child: const Image(
           image: NetworkImage(
-              'https://api.fouraging.com/public/storage/icons/pinDrop.png'),
+              'https://cdn-icons-png.flaticon.com/512/9356/9356230.png'),
         )
         /* Icon(
           icon,
@@ -288,10 +285,10 @@ class EurekaMarkersPageState extends State<EurekaMarkersPage> {
           builder: (context, transformer) {
             mapTransformer = transformer;
             final markerPositions =
-                markers.map(transformer.fromLatLngToXYCoords).toList();
+                //markers.map(transformer.fromLatLngToXYCoords).toList();
+                markers.toList();
 
-            Future<LocationPermission> permission =
-                Geolocator.requestPermission();
+            // Future<LocationPermission> permission = Geolocator.requestPermission();
             //Geolocator.openLocationSettings();
 
             final deviceLocation = Geolocator.getCurrentPosition(
@@ -302,9 +299,9 @@ class EurekaMarkersPageState extends State<EurekaMarkersPage> {
                     {
                       setState(() {
                         _currentPosition = position;
-                        _currentLocation = transformer.fromLatLngToXYCoords(
-                            LatLng(_currentPosition.latitude,
-                                _currentPosition.longitude));
+                        _currentLocation = transformer.toOffset(LatLng(
+                            _currentPosition.latitude,
+                            _currentPosition.longitude));
                         _currentLocationMarkerWidget = _buildMarkerWidget(
                             LatLng(_currentPosition.latitude,
                                 _currentPosition.longitude),
@@ -329,8 +326,8 @@ class EurekaMarkersPageState extends State<EurekaMarkersPage> {
               behavior: HitTestBehavior.opaque,
               //onDoubleTap: _onDoubleTap,
               onTapUp: (details) {
-                final location =
-                    transformer.fromXYCoordsToLatLng(details.localPosition);
+                // final location = transformer.fromXYCoordsToLatLng(details.localPosition);
+                final location = transformer.toLatLng(details.localPosition);
                 _newPlaceLocationMarkerWidget = _buildDraggableMarkerWidget(
                     location,
                     details.localPosition,
@@ -424,7 +421,7 @@ class EurekaMarkersPageState extends State<EurekaMarkersPage> {
                     tooltip: 'Add new location',
                     child: const Image(
                       image: NetworkImage(
-                          'https://api.fouraging.com/public/storage/icons/Apple.png'),
+                          'https://atlas-content-cdn.pixelsquid.com/stock-images/gold-map-location-pin-icon-symbols-ywoqRa9-600.jpg'),
                     ),
                   ),
                 ],

@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import 'package:appino/forage_display.dart';
 import 'package:appino/forage_station.dart';
-import 'package:appino/lat_lng.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:map/map.dart';
+import 'package:latlng/latlng.dart';
 
 class FruitMarkersPage extends StatefulWidget {
   var fruit = {};
@@ -31,8 +31,8 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
   void initState() {
     super.initState();
     areas = widget.fruit['areas'];
-    print("initState() called from MAP .");
-    print(areas);
+    //print("initState() called from MAP .");
+    // print(areas);
   }
 
   final controller = MapController(
@@ -79,7 +79,7 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
       final now = details.focalPoint;
       final diff = now - _dragStart!;
       _dragStart = now;
-      controller.drag(diff.dx, diff.dy);
+      //controller.drag(diff.dx, diff.dy);
       setState(() {});
     }
   }
@@ -104,7 +104,7 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
         ), */
         child: const Image(
           image: NetworkImage(
-              'https://api.fouraging.com/public/storage/icons/pin.png'),
+              'https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvam9iNjc5LTA4NGEtcC1sMTY3eWlpeS5wbmc.png'),
         ),
         onTap: () {
           showModalBottomSheet<void>(
@@ -126,8 +126,7 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
   }
 
   Widget _buildForeageStationWidget(Offset pos, Color color,
-      String forageStationId, ForeageStation foreageStation,
-      [IconData icon = Icons.location_on]) {
+      String forageStationId, ForeageStation foreageStation) {
     return Positioned(
       left: pos.dx - 24,
       top: pos.dy - 24,
@@ -146,13 +145,16 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
         ), */
         child: const Image(
           image: NetworkImage(
-              'https://api.fouraging.com/public/storage/icons/pin.png'),
+              'https://cdn-icons-png.flaticon.com/512/9356/9356230.png'),
         ),
         onTap: () {
           showModalBottomSheet<void>(
-            backgroundColor: Colors.red,
+            isScrollControlled: true,
+            enableDrag: true,
+            backgroundColor: Color.fromARGB(255, 177, 175, 175),
             context: context,
             builder: (BuildContext context) {
+              print(foreageStation.toJson());
               return ForageDisplayWidget(forageStationId, foreageStation);
             },
           );
@@ -191,11 +193,17 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
           //final areasPositions =
           //areasLocations.map(transformer.fromLatLngToXYCoords).toList();
 
-          print(jsonEncode(areas));
+          //print(jsonEncode(areas));
 
           final newAREAsWidgets = areas.map((area) =>
+              /*   _buildForeageStationWidget(
+                  transformer.fromLatLngToXYCoords(LatLng(double.parse(area['address']['latitude']),double.parse(area['address']['longitude']))),
+                  Colors.red,
+                  area['id'].toString(),
+                  ForeageStation.fromJson(area)));
+ */
               _buildForeageStationWidget(
-                  transformer.fromLatLngToXYCoords(LatLng(
+                  transformer.toOffset(LatLng(
                       double.parse(area['address']['latitude']),
                       double.parse(area['address']['longitude']))),
                   Colors.red,
@@ -215,7 +223,8 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
                 _buildMarkerWidget(pos, Color.fromARGB(255, 56, 92, 55), ""),
           ); */
 
-          final homeLocation = transformer.fromLatLngToXYCoords(myLocation);
+          //final homeLocation = transformer.fromLatLngToXYCoords(myLocation);
+          final homeLocation = transformer.toOffset(myLocation);
           Future<LocationPermission> permission =
               Geolocator.requestPermission();
           //Geolocator.openLocationSettings();
@@ -228,9 +237,9 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
                   {
                     setState(() {
                       _currentPosition = position;
-                      _currentLocation = transformer.fromLatLngToXYCoords(
-                          LatLng(_currentPosition.latitude,
-                              _currentPosition.longitude));
+                      _currentLocation = transformer.toOffset(LatLng(
+                          _currentPosition.latitude,
+                          _currentPosition.longitude));
                       _currentLocationMarkerWidget = _buildMarkerWidget(
                           _currentLocation,
                           Color.fromARGB(255, 68, 181, 141),
@@ -289,8 +298,8 @@ class FruitMarkersPageState extends State<FruitMarkersPage> {
                     },
                   ),
                   ...newAREAsWidgets,
-                  homeMarkerWidget,
-                  ...allMarkersWidgets,
+                  //homeMarkerWidget,
+                  //...allMarkersWidgets,
                   //...markerWidgets,
                   //centerMarkerWidget,
                 ],

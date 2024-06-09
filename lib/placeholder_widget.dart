@@ -29,7 +29,7 @@ class PlaceholderWidget extends StatelessWidget {
                 color: Colors.black,
                 child: Image(
                   image: NetworkImage(
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ1WaR8X7ZIqOEZsTWpOTz-r-WnkMXkV--RA&usqp=CAU'),
+                      'https://www.wallmonkeys.com/cdn/shop/products/130969374-LRG_8c2c9bb2-17ee-4239-8e7f-b1a3f5cd0cba_530x.jpg?v=1578675824'),
                 )),
           ),
           const Card(
@@ -37,42 +37,42 @@ class PlaceholderWidget extends StatelessWidget {
               color: Colors.white,
               child: Image(
                 image: NetworkImage(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQALJiATjTXuSriYCuWy9Ai0jO0e-nMaY6a_w&usqp=CAU'),
+                    'https://www.wallmonkeys.com/cdn/shop/products/130969374-LRG_8c2c9bb2-17ee-4239-8e7f-b1a3f5cd0cba_530x.jpg?v=1578675824'),
               )),
           const Card(
               elevation: 0,
               color: Colors.white,
               child: Image(
                 image: NetworkImage(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ1WaR8X7ZIqOEZsTWpOTz-r-WnkMXkV--RA&usqp=CAU'),
+                    'https://www.wallmonkeys.com/cdn/shop/products/130969374-LRG_8c2c9bb2-17ee-4239-8e7f-b1a3f5cd0cba_530x.jpg?v=1578675824'),
               )),
           const Card(
               elevation: 0,
               color: Colors.white,
               child: const Image(
                 image: NetworkImage(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAX_9sTfw5zi87bemUV-nfyRxMHnfgJK66-A&usqp=CAU'),
+                    'https://www.wallmonkeys.com/cdn/shop/products/130969374-LRG_8c2c9bb2-17ee-4239-8e7f-b1a3f5cd0cba_530x.jpg?v=1578675824'),
               )),
           const Card(
               elevation: 0,
               color: Colors.white,
               child: Image(
                 image: NetworkImage(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8JuXNZ9gmMrNPWAPdq6Wx7D9kuKsIlTV06w&usqp=CAU'),
+                    'https://www.wallmonkeys.com/cdn/shop/products/130969374-LRG_8c2c9bb2-17ee-4239-8e7f-b1a3f5cd0cba_530x.jpg?v=1578675824'),
               )),
           const Card(
               elevation: 0,
               color: Colors.white,
               child: Image(
                 image: const NetworkImage(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAqLzoWN5_Y_0zPCz9Y4ls3LzpGeq7qwBqiQ&usqp=CAU'),
+                    'https://www.wallmonkeys.com/cdn/shop/products/130969374-LRG_8c2c9bb2-17ee-4239-8e7f-b1a3f5cd0cba_530x.jpg?v=1578675824'),
               )),
           const Card(
               elevation: 0,
               color: Colors.white,
               child: Image(
                 image: NetworkImage(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtabTpJmxcLJ0tVmBbcka8SUA9ur3_6H-sdw&usqp=CAU'),
+                    'https://www.wallmonkeys.com/cdn/shop/products/130969374-LRG_8c2c9bb2-17ee-4239-8e7f-b1a3f5cd0cba_530x.jpg?v=1578675824'),
               ))
         ],
       ),
