@@ -266,7 +266,7 @@ class _NewLocationConfirmationState extends State<NewLocationConfirmation> {
                     fillColor: Color.fromARGB(255, 173, 141, 175)),
               ),
               // This component to view uploaded photos
-              SizedBox(height: 100, child: _previewImages()),
+              //SizedBox(height: 100, child: _previewImages()),
               SizedBox(
                 height: 100,
                 width: double.maxFinite,
@@ -290,7 +290,7 @@ class _NewLocationConfirmationState extends State<NewLocationConfirmation> {
                         // Uri.parse("https://api.fouraging.com/api/upload/areas/photo");
 
                         var request = http.MultipartRequest("POST", postUri);
-                        request.fields['user'] = 'blah';
+                        request.fields['user'] = 'blahh';
                         //request.fields['file_name'] = _imageFileList!.first.name;
 
                         // request.files.add(http.MultipartFile.fromBytes(

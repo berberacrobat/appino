@@ -31,7 +31,7 @@ class _SpalshScreenState extends State<SpalshScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Color.fromARGB(255, 173, 82, 167),
+        color: Color.fromARGB(255, 20, 158, 182),
         child: const FittedBox(
           fit: BoxFit.cover,
           child: Image(
@@ -75,7 +75,7 @@ class MyApp extends StatelessWidget {
       title: 'ForeAging APP',
       theme: ThemeData(
         primarySwatch:
-            generateMaterialColor(color: Color.fromARGB(255, 180, 131, 180)),
+            generateMaterialColor(color: Color.fromARGB(255, 245, 245, 220)),
       ),
       home: SpalshScreen(),
     );
@@ -93,9 +93,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int _selectedIndex = 0;
+  Color iconColor = Color.fromARGB(255, 6, 158, 173);
+  Color bgColor = Color.fromARGB(255, 243, 230, 196);
 
   final List _pages = [
-    HomeWidget(Color.fromARGB(255, 227, 189, 231)),
+    HomeWidget(Color.fromARGB(255, 245, 245, 220)),
     const PlaceholderWidget(Color.fromARGB(255, 193, 238, 81)),
     const PlaceholderWidget(Colors.green),
     const EurekaMarkersPage(),
@@ -126,52 +128,67 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*   appBar: AppBar(
+      /*  appBar: AppBar(
         title: Text(widget.title),
       ), */
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color.fromARGB(255, 180, 131, 180),
+        backgroundColor: bgColor,
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              color: Color.fromARGB(255, 92, 55, 90),
-            ),
-            label: 'Home',
-          ),
+              icon: Icon(
+                Icons.meeting_room,
+                color: iconColor,
+              ),
+              label: 'Events',
+              activeIcon: const Icon(
+                Icons.meeting_room,
+                color: Color.fromARGB(255, 17, 95, 115),
+              )),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.shopping_basket,
-              color: Color.fromARGB(255, 92, 55, 90),
-            ),
-            label: 'Favourites',
-          ),
+              icon: Icon(
+                Icons.favorite,
+                color: iconColor,
+              ),
+              label: 'Favourites',
+              activeIcon: const Icon(
+                Icons.favorite,
+                color: Color.fromARGB(255, 17, 95, 115),
+              )),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
-              color: Color.fromARGB(255, 92, 55, 90),
-            ),
-            label: 'Discover',
-          ),
+              icon: Icon(
+                Icons.search,
+                color: iconColor,
+              ),
+              label: 'Discover',
+              activeIcon: const Icon(
+                Icons.search,
+                color: Color.fromARGB(255, 17, 95, 115),
+              )),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.remove_red_eye,
-              color: Color.fromARGB(255, 92, 55, 90),
-            ),
-            label: 'Eureka',
-          ),
+              icon: Icon(
+                Icons.remove_red_eye,
+                color: iconColor,
+              ),
+              label: 'Eureka',
+              activeIcon: const Icon(
+                Icons.remove_red_eye,
+                color: Color.fromARGB(255, 17, 95, 115),
+              )),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person,
-              color: Color.fromARGB(255, 92, 55, 90),
-            ),
-            label: 'Account',
-          )
+              icon: Icon(
+                Icons.person,
+                color: iconColor,
+              ),
+              label: 'Account',
+              activeIcon: const Icon(
+                Icons.person,
+                color: Color.fromARGB(255, 17, 95, 115),
+              ))
         ],
-        selectedItemColor: Color.fromARGB(255, 69, 17, 60),
+        selectedItemColor: Color.fromARGB(255, 218, 109, 73),
         onTap: _onItemTapped,
       ),
       /* floatingActionButton: FloatingActionButton(

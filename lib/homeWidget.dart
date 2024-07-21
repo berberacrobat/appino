@@ -25,14 +25,14 @@ class _HomeWidgetPageState extends State<HomeWidget> {
   }
 
   void _getData() async {
-    print("Start _getdata: ");
+    print("Startt _getdata: ");
     // String url = 'http://127.0.0.1:8000/api/forages/';
     // String url = 'https://api.fouraging.com/api/forages';
     String url = 'https://events.managerplay.com/api/forages';
     final response = await http.get(Uri.parse(url));
     //.get(Uri.parse(url), headers: {"Access-Control-Allow-Origin": "*"});
 
-    print("Body: " + response.body.toString());
+    print("Bodyy: " + response.body.toString());
     if (mounted) {
       setState(() {
         fruits = jsonDecode(response.body);
@@ -43,6 +43,7 @@ class _HomeWidgetPageState extends State<HomeWidget> {
 
   @override
   Widget build(BuildContext context) {
+    Color bgColor = Color.fromARGB(255, 2, 85, 108);
     return Container(
         color: widget.color,
         child: SafeArea(
@@ -70,22 +71,24 @@ class _HomeWidgetPageState extends State<HomeWidget> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Container(
-                              padding: const EdgeInsets.all(2),
-                              decoration: const BoxDecoration(
-                                color: Color.fromRGBO(207, 150, 213, 1),
-                                //borderRadius: BorderRadius.all(Radius.circular(50) )
-                              ),
-                              height: 80,
                               width: 80,
+                              height: 80,
+                              //padding: EdgeInsets.all(2),
+                              clipBehavior: Clip.hardEdge,
+                              decoration: BoxDecoration(
+                                  //color: Colors.amber,
+                                  //border: Border.all(color: bgColor),
+                                  borderRadius: BorderRadius.circular(50.0)),
                               child: Image(
                                 image: NetworkImage(fruit['image']),
                               ),
                             ),
+                            const SizedBox(height: 5),
                             Text(
                               fruit['name'],
                               style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 109, 35, 119),
+                                fontWeight: FontWeight.w400,
+                                color: Color.fromARGB(255, 46, 46, 46),
                                 // backgroundColor: Colors.red
                               ),
                             )
